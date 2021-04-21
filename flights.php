@@ -147,7 +147,7 @@
                 <tbody>
                     <?php if (isset($flights)){ 
                     foreach($flights as $f) { ?>
-                        <tr>
+                        <tr> 
                             <td><?=  $f->departureairport; ?>
                                 <br>
                                 <form action='' method='POST'>
@@ -160,34 +160,40 @@
                             <td><?=  $f->arrivaldate; ?></td>
                             <td>
                                 <?php   
-                                if (empty($f->meal)){
                                     if ($f->departuredate < $date){
                                         echo "<p class='unavailable'>Unavailable</p>";
-                                    } else{
+                                    } 
+                                    else{
+                                        if(empty($f->meal)){
+                                            $buttonLabel = "Select Meal";   
+                                        }
+                                        else{
+                                            $buttonLabel = $f->meal;
+                                        }
                                         echo "<form action='./mealSelection.php' method='POST'>
-                                                <input type='hidden' name='flightBookingID' value='" . $f->id . "' />
-                                                <input class='addBtn' type='submit' name='sendFlightBookingID' value='Add Meal' />
+                                                <input type='hidden' name='postFlightBookingID' value='" . $f->id . "' />
+                                                <input class='addBtn' type='submit' name='sendFlightBookingID' value=".$buttonLabel." />
                                             </form>";
                                     }
-                                } else{
-                                    echo $f->meal;
-                                }
                                 ?>
                             </td>
                             <td>
                                 <?php   
-                                if (empty($f->seat_id)){
                                     if ($f->departuredate < $date){
                                         echo "<p class='unavailable'>Unavailable</p>";
-                                    } else{
+                                    } 
+                                    else{
+                                        if(empty($f->seat_id)){
+                                            $buttonLabel = "Select Seat";   
+                                        }
+                                        else{
+                                            $buttonLabel = $f->seat_id;
+                                        }
                                     echo "<form action='./seatSelection.php' method='POST'>
                                             <input type='hidden' name='postFlightBookingID' value='" . $f->id . "' />
-                                            <input class='addBtn' type='submit' name='sendFlightBookingID' value='Select Seat' />
+                                            <input class='addBtn' type='submit' name='sendFlightBookingID' value=".$buttonLabel." />
                                         </form>";
                                     }
-                                } else{
-                                    echo $f->seat_id;
-                                }
                                 ?>
                             </td>
                             <td>

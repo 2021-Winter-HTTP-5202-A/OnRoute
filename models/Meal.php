@@ -46,7 +46,7 @@ class Meal{
     }
 
     public function addMealForFlight($flightBookingId, $mealId){
-        $query = "UPDATE flightbookings SET meal_id VALUE = :mealId WHERE flightbookings.id = :flightBookingId";
+        $query = "UPDATE flightbookings SET meal_id = :mealId WHERE flightbookings.id = :flightBookingId";
 
         $request = $this->db->prepare($query);
 

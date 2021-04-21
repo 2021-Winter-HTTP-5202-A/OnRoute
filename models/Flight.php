@@ -203,8 +203,6 @@ class Flight{
     public function updateSeatForFlightBooking($flightBookingId, $seatSelected){
         $query = "UPDATE flightbookings SET seat_id = :seatSelected WHERE flightbookings.id = :flightBookingId";
         
-        
-
         $request = $this->db->prepare($query);
         //sanitize
         $request->bindParam(':flightBookingId', $flightBookingId);
