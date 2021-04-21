@@ -27,27 +27,22 @@
             $flightController = new Flight($db);
     
             //send flightId to controller 
-            $response = $flightController->getFlightById($flightId);
-            var_dump($response);
-            
+            $flight = $flightController->getFlightById($flightId);
+            var_dump($flight);
 
-            if($response == false){
+            if($flight == false){
                 $errMsg = "We couldn't find that flight. Did you double check your flight number?";
             } 
+
             else{
-                switch($response->airline){
-                    case 'aircanada':
-                        $airlineLogoLink = 'images/logos/airCanada.jpg';
-                        break;
-                    case 'deltaAirlines';
-                        $airlineLogoLink = 'images/logos/deltaAirlines.jpg';
-                        break;
-                    case 'americanAirlines';
-                        $airlineLogoLink = 'images/logos/americanAirlines.jpg';
-                        break;
-                } 
+                /* Get airline object for this flight */
+                $airlineId = $flight->airline_id;
+                $airline = $flightController->getAirLineById($airlineId);
+                var_dump($airline);
+                $airlineLogoLink = $airline->imagepath;
+
                 //store the $response as a session var
-                $_SESSION['flightInfo'] = $response;
+                $_SESSION['flightInfo'] = $flight;
                 $_SESSION['airlineLogoLink'] = $airlineLogoLink;
                 //redirect user to the flightInfo pages
                 header ('Location:flightInfo.php');   

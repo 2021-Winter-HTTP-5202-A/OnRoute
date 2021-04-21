@@ -244,5 +244,19 @@ class Flight{
         //return object
         return $result;
     }
+
+    public function getAirLineById($airlineId){
+        $query = "SELECT * FROM airlines WHERE airlines.id = :airlineId";
+
+        $request = $this->db->prepare($query);
+        //sanitize
+        $request->bindParam(':airlineId', $airlineId);
+        //execute
+        $request->execute();
+        //fetch result
+        $result = $request->fetch(\PDO::FETCH_OBJ);
+        //return object
+        return $result;
+    }
 }
 ?>
