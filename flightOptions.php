@@ -17,6 +17,8 @@
 
     //add the posted flightbookingid to a var and send as hidden input
     $postFlightBookingID = $_POST['postFlightBookingID']
+
+    
 ?>
 
 <main>

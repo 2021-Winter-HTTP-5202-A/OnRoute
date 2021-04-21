@@ -8,7 +8,7 @@
 ?>
 <main>
     <div class = "flightInfo">
-        <h2>Flight <?php echo $flightInfo->id ?></h2>
+        <h2>Flight <?php echo $flightInfo->flightid ?></h2>
          <!-- Import airline image-->
         
 
