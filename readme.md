@@ -33,12 +33,16 @@ Beijing, Buenos Aires, Cairo, Calcutta, Chongqing, Delhi, Dhaka, Guangzhou, Ista
 
 ---
 
-#### Will Midgette: flightNumberSearch.php and flightInfo.php
+#### Will Midgette: flightNumberSearch.php, flightInfo.php, mealSelection.php, seatSelection.php
 
-- Feature allows a user to enter their flight number to check the details of their flight
+- Flightnumbersearch.php and FlightInfo.php - allows a user to enter their flight number to check the details of their flight
 - Validation on flightNumberSearch.php tells user if they have not entered a flight number, or if the database could not find a flight from the flight number they entered
-- If the database can find a flight with the entered flight number, it stores it as a session variable and redirects the user to the flightInfo.php page
-
+- If the database can find a flight with the entered flight number, it stores it as a session variable and redirects the user to the flightInfo.php page where the flight details are displayed
+- mealSelection.php - this can be accessed through the flights.php page when a user is logged in. After navigating to this page, the user will have the option to select a meal for their flight. If the user navigated to the page without a user_id set, or without having submitting a flightbookingId via post request, they are redirected back to the flights.php page
+- Validation for the form checks that the user entered a selection. If they did not, the page gives them an error message. If the selection submission is successful, the user is directed to a confirmation page and the meal is updated on the corresponding flightbooking
+- seatSelection.php - this can also be accessed through the flights.php page when a user is logged in. After navigating to this page, the user will have the option to select a meal for their flightIf the user navigated to the page without a user_id set, or without having submitting a flightbookingId via post request, they are redirected back to the flights.php page
+- If the user had previously selected a seat, the seat is indicated in a user message, and the seat is highlighted in blue on the seating plan. Seats for the flight that have are unavailable are booked in red and cannot be selected. Seats that are available are light blue and can be selected. 
+- Validation checks for a seat selection. If the user did not submit a seat upon form submission, they are informed of the error and asked to submit again. If the submission is successful, the user recieves a confirmation message, and their flight booking is updated with the newly selected seat. They are then prompted to return to the flights.php page.
 ---
 
 #### Alexis Arevalo: vehicles.php and vehicleSelection.php
