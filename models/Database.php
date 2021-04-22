@@ -16,8 +16,8 @@ class Database{
     
     
     private static $user ="root";
-    private static $pass = "root";
-    private static $dsn = "mysql:host=localhost;dbname=tripplanner";
+    private static $pass = "";
+    private static $dsn = "mysql:host=localhost;dbname=onroute";
     
     private static $dbcon;
 

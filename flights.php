@@ -165,15 +165,19 @@
                                     } 
                                     else{
                                         if(empty($f->meal)){
-                                            $buttonLabel = "Select Meal";   
+                                            echo "<form action='./mealSelection.php' method='POST'>
+                                                <input type='hidden' name='flightBookingID' value='$f->id' />
+                                                <input class='addBtn' type='submit' name='sendFlightBookingID' value='Add Meal' />
+                                            </form>";  
                                         }
                                         else{
-                                            $buttonLabel = $f->meal;
+                                            echo $f->meal;
+                                            echo "<form action='./mealSelection.php'' method='POST'>
+                                                    <input type='hidden' name='postFlightBookingID' value='$f->id'/>
+                                                    <button type='submit' class='linkBtn' name='flightSubmit'>Update</button>
+                                                </form>";
                                         }
-                                        echo "<form action='./mealSelection.php' method='POST'>
-                                                <input type='hidden' name='postFlightBookingID' value='" . $f->id . "' />
-                                                <input class='addBtn' type='submit' name='sendFlightBookingID' value=".$buttonLabel." />
-                                            </form>";
+                            
                                     }
                                 ?>
                             </td>
@@ -184,15 +188,18 @@
                                     } 
                                     else{
                                         if(empty($f->seat_id)){
-                                            $buttonLabel = "Select Seat";   
+                                            echo "<form action='./seatSelection.php' method='POST'>
+                                            <input type='hidden' name='postFlightBookingID' value='$f->id' />
+                                            <input class='addBtn' type='submit' name='sendFlightBookingID' value='Select Seat' />
+                                        </form>";  
                                         }
                                         else{
-                                            $buttonLabel = $f->seat_id;
+                                            echo $f->seat_id;
+                                            echo "<form action='./seatSelection.php'' method='POST'>
+                                                    <input type='hidden' name='postFlightBookingID' value='$f->id'/>
+                                                    <button type='submit' class='linkBtn' name='flightSubmit'>Update</button>
+                                                </form>";
                                         }
-                                    echo "<form action='./seatSelection.php' method='POST'>
-                                            <input type='hidden' name='postFlightBookingID' value='" . $f->id . "' />
-                                            <input class='addBtn' type='submit' name='sendFlightBookingID' value=".$buttonLabel." />
-                                        </form>";
                                     }
                                 ?>
                             </td>
@@ -203,7 +210,7 @@
                                         echo "<p class='unavailable'>Unavailable</p>";
                                     } else{
                                     echo "<form action='./classSelection.php' method='POST'>
-                                            <input type='hidden' name='postFlightBookingID' value='" . $f->id . "' />
+                                            <input type='hidden' name='postFlightBookingID' value='$f->id' />
                                             <input class='addBtn' type='submit' name='sendFlightBookingID' value='Select Class' />
                                         </form>";
                                     }
