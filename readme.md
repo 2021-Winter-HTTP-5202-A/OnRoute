@@ -64,8 +64,8 @@ Beijing, Buenos Aires, Cairo, Calcutta, Chongqing, Delhi, Dhaka, Guangzhou, Ista
 
 #### Mohamed Sakr: login.php, flightOptions.php and models/User.php
 
--Login for the users mostly finished
--User model will handle all the user related data
--Working on integrating the login with the flight details in the flightOptions.php page alongside Will
--Next steps: Integrate the user feature with all the other features and make a registration feature
--Implement phpmailer into the services page and to a forgot password page
+- Login and registration features
+- Set up phpmailer
+- 'Forgot your password?', password and email changing which rely on the phpmailer
+- User model to handle all user related data
+- Customer service page now works with phpmailer
