@@ -23,50 +23,66 @@
 
     //Registration
     if (isset($_POST['submit'])) {
-        //Gets a list of registered user emails
+        //Gets the email from the posted form
         $email = $_POST['email'];
 
-        //Checks to see if posted email is unique
+        //Gets a list of registered user emails
         $emailExists = $user->checkIfEmailIsUnique($email);
 
+        //Checks if the email exists
         if ($emailExists) {
-            //Change this to something useful
+            //Lets the user know the email already exists
             echo 'Email already exists';
         } else {
+            //Encrypts password
             $hashedPass = md5($_POST['pass']);
+            //Gets variables from the posted form
             $fname = $_POST['fname'];
             $lname = $_POST['lname'];
             $pnumber = $_POST['pnumber'];
+            //Sets the subject and body for the email
             $subject = "Registration successful";
-            $body = "You are now registered bla bla bla yeah have fun";
+            $body = "You are now registered on onroute.";
+            //Adds the new user to the database
             $u = $user->addUser($email, $hashedPass, $fname, $lname, $pnumber);
+            //Sends the email letting the user know their registration was successful
             send_email($email, $fname.' '.$lname, $subject, $body);
+            
+            //Grabs the id of the newly created user account
             $newID = $user->getUserIdByEmail($email);
+            //Stores the user data into session variables
             $_SESSION['userID'] = $newID->id;
             $_SESSION['userEmail'] = $email;
             $_SESSION['userFirstName'] = $fname;
             $_SESSION['userLastName'] = $lname;
+            //Redirects to homepage
             header('Location: index.php');
         }
     }
     
     //Login
     if (isset($_POST['login'])) {
-        //Add validation here
+        //Gets the posted email and password
         $email = $_POST['in_email'];
         $hashedPass = md5($_POST['in_pass']);
 
+        //Gets the user associated with that email and password
+        //If the credentials were correct it returns the user's data,
+        //Else it returns null
         $u = $user->getUser($email, $hashedPass);
 
+        //Checks if the user's data was returned
         if (!$u == null) {
+            //Stores the user data into session variables
             $_SESSION['userID'] = $u->id;
             $_SESSION['userEmail'] = $u->email;
             $_SESSION['userFirstName'] = $u->firstname;
             $_SESSION['userLastName'] = $u->lastname;
             $_SESSION['userPhone'] = $u->phonenumber;
+            //Redirects to homepage
             header('Location: Flights.php');
         } else {
-            //Change this to something useful
+            //Lets the user know their username or password is incorrect
             $invalid = "<p>Invalid username and/or password</p>";
         }
     }
