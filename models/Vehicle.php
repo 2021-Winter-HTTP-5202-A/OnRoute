@@ -86,7 +86,9 @@ class Vehicle{
     //Get Vehicles with Pickup Dates and Return Dates that match
     public function GetSelectedDate($puDate, $rDate, $vehicleid, $dbcon){
 
-        $sql = "SELECT * FROM vehiclerentals WHERE '$puDate' AND '$rDate' BETWEEN pickupdate AND returndate AND vehicle_id = :vehicleid";
+        $sql = "SELECT * FROM vehiclerentals 
+        WHERE '$puDate' BETWEEN pickupdate AND returndate AND vehicle_id = :vehicleid
+        OR '$rDate' BETWEEN pickupdate AND returndate AND vehicle_id = :vehicleid";
 
         $pdo = $dbcon->prepare($sql);
         $pdo->bindParam(':vehicleid', $vehicleid);
