@@ -47,7 +47,7 @@ if(isset($_SESSION['pDate']) && isset($_SESSION['rDate'])){
             $dbcon = Database::getDb();
             $av = new Vehicle();
             $addVehicle = $av->addVehiclesToRent($vehicleLoc, $pickUp, $return, $id, $userId, $dbcon);
-            header("Location: vehicles.php");
+            header("Location: vehicleInfo.php");
         }
     }
 } else /*if sessions are not set...Select the values*/ {
@@ -89,7 +89,7 @@ if(isset($_SESSION['pDate']) && isset($_SESSION['rDate'])){
                         $viewDate = new Vehicle();
                         $selectedDate = $viewDate->addVehiclesToRent($vehicleLocation, $pickupDate, $returnDate, $id, $userId, $dbcon);
                         $notAccepted = "Approved";
-                        header("Location: vehicles.php");
+                        header("Location: vehicleInfo.php");
                     }
                 }
             }
