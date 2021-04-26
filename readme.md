@@ -45,12 +45,19 @@ Beijing, Buenos Aires, Cairo, Calcutta, Chongqing, Delhi, Dhaka, Guangzhou, Ista
 - Validation checks for a seat selection. If the user did not submit a seat upon form submission, they are informed of the error and asked to submit again. If the submission is successful, the user recieves a confirmation message, and their flight booking is updated with the newly selected seat. They are then prompted to return to the flights.php page.
 ---
 
-#### Alexis Arevalo: vehicles.php and vehicleSelection.php
+#### Alexis Arevalo: vehicles.php, vehicleSelection.php, vehicleInfo.php, models/Vehicle.php
 
-- Displaying all the available vehicles in the database, and the user can select a vehicle by clicking on it.
-- When the user selects a vehicle, they are redirected to (vehicleSlection.php) a vehicle information page which is retrieved by the stored vehicle 'id'.
-- All inputs made to vehicle search form are validated against empty fields. - Working on Sanitizing input fields against malicious code injections.
-- User is able to search the database for vehicles based off of pick-up locations, pick-up dates, and return dates.
+- All vehicles in the database are displayed, and the user can select a vehicle by clicking on it.
+- The user will not be able to select or submit any vehicles without logging in first.
+- When the user selects a vehicle, they are redirected to (vehicleSelection.php) a vehicle information page which is retrieved by the stored vehicle 'id'.
+- All inputs made to the vehicle search form are validated against empty fields. - Working on Sanitizing input fields against malicious code injections.
+- Users are able to search the database for vehicles based off of pick-up locations, pick-up dates, and return dates - What they will see once submitting the search, are all the vehicles that match pick up location.
+- Pick up date and return date will be use to calcualte the total price from the the vehicle price/day.
+- Vehicle that are already rented will not be available for selection.
+- All searches selected are sent and retrieved in (vehicleSelection.php). If user selects a vehicle that is not searched then they will have to submit a pick up date and return date within (VehicleSelection.php)
+- If a vehicle is already rented which matches the users date selections, then an error will appear stating that they must select a diffrent date.
+- Upon approval, the vehicle selected is saved along with all it's information.
+- Users can check their all their rentals and vehicle information by clicking the rental list button on the top right corner of (vehicles.php) which takes them to the (vehicleInfo.php) page. 
 
 ---
 

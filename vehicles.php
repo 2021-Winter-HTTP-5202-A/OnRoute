@@ -38,7 +38,7 @@ if(isset($_POST['vehicleSubmit'])){
         //invert the display when user searches for vehicles.
         $appear = 'style="display: none';
         $disappear = 'style="display: block;"';
-        if(isset($pickupDate) && $pickupDate !== "" && isset($returnDate) && $returnDate !== ''){
+        if(isset($pickupDate) && $pickupDate !== "" && isset($returnDate) && $returnDate !== ""){
             $_SESSION['pDate'] = $pickupDate;
             $_SESSION['rDate'] = $returnDate;
 
@@ -46,7 +46,7 @@ if(isset($_POST['vehicleSubmit'])){
             $target = new DateTime($pickupDate);
             $interval = $origin->diff($target);
             $timed = $interval->format('%a');
-        }
+        } 
     }
 }
 
@@ -86,6 +86,7 @@ $vehicles = $vh->getAllVehicles($dbcon);
     </form>
     <div class="products">
         <h2>Choose Your Vehicle</h2>
+            <!--Vehicle Top Deals-->
             <?php echo '<div '.$appear.'"><div class="products__popular"><h3>Top Car Deals</h3>'; 
                 foreach($vehicles as $vehicle){ if($vehicle->vehicleprice <= '65.00'){ ?>
                 <div class="products__popular_opt">
@@ -95,6 +96,7 @@ $vehicles = $vh->getAllVehicles($dbcon);
                     </a>
                 </div>
             <?php }/*xif price deal statement*/}/*xforeach*/echo '</div></div>'?>
+            <!--All vehicles in the database-->
             <?php echo '<div '.$appear.'"><div class="products__popular"><h3>Vehicles Listed</h3>'; 
                 foreach($vehicles as $vehicle){ ?>
                 <div class="products__sytem_opt">
@@ -104,6 +106,7 @@ $vehicles = $vh->getAllVehicles($dbcon);
                     </a>
                 </div>
             <?php }/*xforeach*/echo '</div></div>'?>
+            <!--Vehicles Selected through Search-->
             <?php echo '<div '.$disappear.'"><div class="products__popular"><h3>Vehicles Searched</h3>'; 
                 foreach($displayVehicles as $vehicle){
                     $id = $vehicle->id;
@@ -120,7 +123,7 @@ $vehicles = $vh->getAllVehicles($dbcon);
                         <img src="images/vehicles/<?= $vehicle->vehicleimage; ?>" height="200" alt="Image of a car model">
                     </a>
                 </div>
-            <?php }}/*xforeach*/echo '</div></div>'?>
+            <?php }}/*xforeach*/if ($displayVehicles == false){ echo "<p style='color: red;'>No vehicles with the searched location '".$pickupLoc."'.</p>";} echo '</div></div>' ?>
         </div>
     </div>
 </main>
